@@ -1,0 +1,32 @@
+{
+  "name": "@plastic-ui/form-validator",
+  "description": "A React Form Validator",
+  "license": "GPL-3.0-or-later",
+  "version": "1.0.0",
+  "author": "Gonzalo Chumillas",
+  "repository": "github:gchumillas/form-validator",
+  "main": "dist/index",
+  "types": "dist/index",
+  "keywords": [
+    "react",
+    "form",
+    "validator"
+  ],
+  "scripts": {
+    "lint": "tsc --noEmit && eslint 'src/**/*.{ts,tsx}'",
+    "build": "rimraf ./dist && tsc -p tsconfig.build.json",
+    "prepare": "yarn run build"
+  },
+  "peerDependencies": {
+    "react": "~17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@types/lodash": "^4.14.168",
+    "@types/react": "~17.0.0",
+    "babel-loader": "^8.2.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
