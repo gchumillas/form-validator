@@ -22,9 +22,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@testing-library/react-hooks": "^5.1.1",
     "@types/lodash": "^4.14.168",
     "@types/react": "~17.0.0",
-    "babel-loader": "^8.2.2"
+    "babel-loader": "^8.2.2",
+    "react-test-renderer": "~17.0.2"
   },
   "dependencies": {
     "lodash": "^4.17.21"
