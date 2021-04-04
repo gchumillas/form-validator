@@ -7,7 +7,7 @@ const errors = {
   unknownGender: 'Unknown gender'
 }
 
-test('validators', () => {
+test('validator', () => {
   const item = { username: 'John', password: '', rePassword: '', gender: '' }
   const { result } = renderHook(() =>
     useValidator({
@@ -21,14 +21,30 @@ test('validators', () => {
     })
   )
 
+  // Required fields
   act(() => expect(result.current.test(item)).toBe(false))
   expect(result.current.text('username')).toBeUndefined()
   expect(result.current.text('password')).toBe(errors.requiredFields)
   expect(result.current.text('rePassword')).toBe(errors.requiredFields)
   expect(result.current.text('gender')).toBeUndefined()
 
+  // Passwords do not match
   act(() =>
     expect(result.current.test({ ...item, password: 'xxx', rePassword: 'yyyy' })).toBe(false)
   )
+  expect(result.current.text('username')).toBeUndefined()
+  expect(result.current.text('password')).toBeUndefined()
   expect(result.current.text('rePassword')).toBe(errors.doNotMatch)
+  expect(result.current.text('gender')).toBeUndefined()
+
+  // Unknown gender
+  act(() =>
+    expect(
+      result.current.test({ ...item, password: 'xxx', rePassword: 'xxx', gender: 'beetle' })
+    ).toBe(false)
+  )
+  expect(result.current.text('username')).toBeUndefined()
+  expect(result.current.text('password')).toBeUndefined()
+  expect(result.current.text('rePassword')).toBeUndefined()
+  expect(result.current.text('gender')).toBe(errors.unknownGender)
 })
