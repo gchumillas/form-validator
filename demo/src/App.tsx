@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
 import CustomTextField from './components/CustomTextField'
-import useValidator from '@plastic-ui/form-validator'
+import { useValidator } from '@plastic-ui/form-validator'
 
 export default () => {
   const [message, setMessage] = React.useState('')

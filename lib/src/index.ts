@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 export type Validator = (val: any) => string | true
 
-export default ({
+export const useValidator = ({
   defaultValidator = () => true,
   validators
 }: {
