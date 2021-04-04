@@ -8,10 +8,10 @@ test('defaultValidator', () => {
   )
 
   act(() => expect(result.current.test(item)).toBe(false))
-  expect(result.current.text('username')).toBe(undefined)
+  expect(result.current.text('username')).toBeUndefined()
   expect(result.current.text('password')).toBe('Required field')
 
   act(() => expect(result.current.test({ ...item, password: 'xxx' })).toBe(true))
-  expect(result.current.text('username')).toBe(undefined)
-  expect(result.current.text('password')).toBe(undefined)
+  expect(result.current.text('username')).toBeUndefined()
+  expect(result.current.text('password')).toBeUndefined()
 })
