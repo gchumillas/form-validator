@@ -15,7 +15,7 @@ export const useValidator = ({
   const [texts, setTexts] = React.useState<{ [name: string]: string | true }>({})
 
   return {
-    test: (values: { [name: string]: any }, options?: { debug: boolean }) => {
+    test: (values: { [name: string]: any }) => {
       const texts = _.mapValues(values, (value, name) => {
         const v = _.isFunction(validators) ? validators(defaultValidator) : validators
         const fieldValidators = v?.[name] || [defaultValidator]
@@ -23,7 +23,7 @@ export const useValidator = ({
         for (const validator of fieldValidators) {
           const result = validator(value)
           if (typeof result == 'string') {
-            options?.debug && console.info(`validator: ${name} is not valid`)
+            console.info(`validator: ${name} is not valid`)
             return result
           }
         }
