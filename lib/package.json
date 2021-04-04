@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "tsc --noEmit && eslint 'src/**/*.{ts,tsx}'",
     "build": "rimraf ./dist && tsc -p tsconfig.build.json",
-    "test": "yarn run build && jest",
+    "test": "yarn run build && jest --silent",
     "prepare": "yarn run build"
   },
   "peerDependencies": {
