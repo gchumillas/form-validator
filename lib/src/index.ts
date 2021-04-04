@@ -4,9 +4,11 @@ import _ from 'lodash'
 export type Validator = (val: any) => string | true
 
 export const useValidator = ({
+  fields,
   defaultValidator = () => true,
   validators
 }: {
+  fields?: string[]
   defaultValidator?: Validator
   validators?:
     | { [name: string]: Validator[] }
@@ -17,6 +19,11 @@ export const useValidator = ({
   return {
     test: (values: { [name: string]: any }) => {
       const texts = _.mapValues(values, (value, name) => {
+        // ignores not listed fields
+        if (fields && !fields.includes(name)) {
+          return true
+        }
+
         const v = _.isFunction(validators) ? validators(defaultValidator) : validators
         const fieldValidators = v?.[name] || [defaultValidator]
 

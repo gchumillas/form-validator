@@ -1,4 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks'
+import _ from 'lodash'
 import { useValidator } from './index'
 
 const errors = {
@@ -11,6 +12,7 @@ describe('validator', () => {
   const item = { username: 'John', password: '', rePassword: '', gender: '' }
   const { result } = renderHook(() =>
     useValidator({
+      fields: _.keys(item),
       defaultValidator: val => !!val || errors.requiredFields,
       validators: defaultValidator => ({
         rePassword: [defaultValidator, val => val == 'xxx' || errors.doNotMatch],
@@ -39,7 +41,6 @@ describe('validator', () => {
     expect(result.current.text('gender')).toBeUndefined()
   })
 
-  // Unknown gender
   test('unknown gender', () => {
     act(() =>
       expect(
@@ -50,5 +51,19 @@ describe('validator', () => {
     expect(result.current.text('password')).toBeUndefined()
     expect(result.current.text('rePassword')).toBeUndefined()
     expect(result.current.text('gender')).toBe(errors.unknownGender)
+  })
+
+  test('Ignore extra field', () => {
+    act(() =>
+      expect(
+        result.current.test({
+          ...item,
+          password: 'xxx',
+          rePassword: 'xxx',
+          gender: 'male',
+          extra: ''
+        })
+      ).toBe(true)
+    )
   })
 })
