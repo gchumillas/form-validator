@@ -18,9 +18,6 @@ test('should test', () => {
     })
   )
 
-  act(() => {
-    result.current.test(item)
-  })
-
+  act(() => expect(result.current.test(item)).toBe(false))
   expect(result.current.text('rePassword')).toBe('Passwords do not match')
 })
