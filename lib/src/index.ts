@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 
-export type Validator = (val: any) => string | true
+export type Validator = (val: any, fields: { [name: string]: any }) => string | true
 
 export const useValidator = ({
   fields,
@@ -28,7 +28,7 @@ export const useValidator = ({
         const fieldValidators = v?.[name] || [defaultValidator]
 
         for (const validator of fieldValidators) {
-          const result = validator(value)
+          const result = validator(value, values)
           if (typeof result == 'string') {
             console.info(`validator: ${name} is not valid`)
             return result

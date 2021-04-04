@@ -15,7 +15,10 @@ describe('validator', () => {
       fields: _.keys(item),
       defaultValidator: val => !!val || errors.requiredFields,
       validators: defaultValidator => ({
-        rePassword: [defaultValidator, val => val == 'xxx' || errors.doNotMatch],
+        rePassword: [
+          defaultValidator,
+          (val, fields) => val == fields.password || errors.doNotMatch
+        ],
         gender: [
           val => !val || ['male', 'female', 'butterfly'].includes(val) || errors.unknownGender
         ]
