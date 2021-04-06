@@ -1,7 +1,7 @@
 {
   "name": "@plastic-ui/form-validator",
   "description": "A React Form Validator",
-  "license": "MIT License",
+  "license": "MIT",
   "version": "1.2.0",
   "author": "Gonzalo Chumillas",
   "repository": "github:gchumillas/form-validator",
