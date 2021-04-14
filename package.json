@@ -1,5 +1,4 @@
 {
-  "license": "MIT License",
   "private": true,
   "workspaces": [
     "lib",
