@@ -14,8 +14,9 @@ yarn add @plastic-ui/form-validator
 
 ## Usage
 
-Declare the rules:
+You'll find a complete example [HERE](https://github.com/gchumillas/form-validator/blob/main/demo/src/App.tsx).
 
+Declare the rules:
 ```ts
 const validator = useValidator({
   // Default validator (applied when no validator is specified)
@@ -31,7 +32,6 @@ const validator = useValidator({
 ```
 
 Test the rules on submit:
-
 ```ts
 const onSubmit = () => {
   setMessage('')
@@ -44,7 +44,6 @@ const onSubmit = () => {
 ```
 
 Print the errors (if any):
-
 ```ts
 <CustomTextField
   required
@@ -54,8 +53,6 @@ Print the errors (if any):
   errorText={validator.text('username')}
 />
 ```
-
-You'll find a complete example [here](https://github.com/gchumillas/form-validator/blob/main/demo/src/App.tsx).
 
 ## Demo
 
